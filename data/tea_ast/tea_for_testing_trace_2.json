@@ -1,0 +1,651 @@
+{
+    "type": "CONJUNCTION",
+    "left": {
+        "type": "CONJUNCTION",
+        "left": {
+            "type": "CONJUNCTION",
+            "left": {
+                "type": "CONJUNCTION",
+                "left": {
+                    "type": "CONJUNCTION",
+                    "left": {
+                        "type": "CONJUNCTION",
+                        "left": {
+                            "type": "CONJUNCTION",
+                            "left": {
+                                "type": "CONJUNCTION",
+                                "left": {
+                                    "type": "CONJUNCTION",
+                                    "left": {
+                                        "type": "CONJUNCTION",
+                                        "left": {
+                                            "type": "CONJUNCTION",
+                                            "left": {
+                                                "type": "CONJUNCTION",
+                                                "left": {
+                                                    "type": "CONJUNCTION",
+                                                    "left": {
+                                                        "type": "CONJUNCTION",
+                                                        "left": {
+                                                            "type": "CONJUNCTION",
+                                                            "left": {
+                                                                "type": "CONJUNCTION",
+                                                                "left": {
+                                                                    "type": "CONJUNCTION",
+                                                                    "left": {
+                                                                        "type": "CONJUNCTION",
+                                                                        "left": {
+                                                                            "type": "CONJUNCTION",
+                                                                            "left": {
+                                                                                "type": "CONJUNCTION",
+                                                                                "left": {
+                                                                                    "type": "CONJUNCTION",
+                                                                                    "left": {
+                                                                                        "type": "CONJUNCTION",
+                                                                                        "left": {
+                                                                                            "type": "CONJUNCTION",
+                                                                                            "left": {
+                                                                                                "type": "CONJUNCTION",
+                                                                                                "left": {
+                                                                                                    "type": "CONJUNCTION",
+                                                                                                    "left": {
+                                                                                                        "type": "CONJUNCTION",
+                                                                                                        "left": {
+                                                                                                            "type": "CONJUNCTION",
+                                                                                                            "left": {
+                                                                                                                "type": "CONJUNCTION",
+                                                                                                                "left": {
+                                                                                                                    "type": "CONJUNCTION",
+                                                                                                                    "left": {
+                                                                                                                        "type": "CONJUNCTION",
+                                                                                                                        "left": {
+                                                                                                                            "type": "CONJUNCTION",
+                                                                                                                            "left": {
+                                                                                                                                "type": "CONJUNCTION",
+                                                                                                                                "left": {
+                                                                                                                                    "type": "CONJUNCTION",
+                                                                                                                                    "left": {
+                                                                                                                                        "type": "DISJUNCTION",
+                                                                                                                                        "left": {
+                                                                                                                                            "type": "NEGATION",
+                                                                                                                                            "inner": {
+                                                                                                                                                "type": "ATOMIC",
+                                                                                                                                                "name": "black_tea"
+                                                                                                                                            }
+                                                                                                                                        },
+                                                                                                                                        "right": {
+                                                                                                                                            "type": "ATOMIC",
+                                                                                                                                            "name": "tea"
+                                                                                                                                        }
+                                                                                                                                    },
+                                                                                                                                    "right": {
+                                                                                                                                        "type": "DISJUNCTION",
+                                                                                                                                        "left": {
+                                                                                                                                            "type": "NEGATION",
+                                                                                                                                            "inner": {
+                                                                                                                                                "type": "ATOMIC",
+                                                                                                                                                "name": "complete_ferment"
+                                                                                                                                            }
+                                                                                                                                        },
+                                                                                                                                        "right": {
+                                                                                                                                            "type": "ATOMIC",
+                                                                                                                                            "name": "ferment"
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                },
+                                                                                                                                "right": {
+                                                                                                                                    "type": "DISJUNCTION",
+                                                                                                                                    "left": {
+                                                                                                                                        "type": "NEGATION",
+                                                                                                                                        "inner": {
+                                                                                                                                            "type": "ATOMIC",
+                                                                                                                                            "name": "cyan_tea"
+                                                                                                                                        }
+                                                                                                                                    },
+                                                                                                                                    "right": {
+                                                                                                                                        "type": "ATOMIC",
+                                                                                                                                        "name": "tea"
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            },
+                                                                                                                            "right": {
+                                                                                                                                "type": "DISJUNCTION",
+                                                                                                                                "left": {
+                                                                                                                                    "type": "NEGATION",
+                                                                                                                                    "inner": {
+                                                                                                                                        "type": "ATOMIC",
+                                                                                                                                        "name": "ferment"
+                                                                                                                                    }
+                                                                                                                                },
+                                                                                                                                "right": {
+                                                                                                                                    "type": "ATOMIC",
+                                                                                                                                    "name": "technique"
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        },
+                                                                                                                        "right": {
+                                                                                                                            "type": "DISJUNCTION",
+                                                                                                                            "left": {
+                                                                                                                                "type": "NEGATION",
+                                                                                                                                "inner": {
+                                                                                                                                    "type": "ATOMIC",
+                                                                                                                                    "name": "frying"
+                                                                                                                                }
+                                                                                                                            },
+                                                                                                                            "right": {
+                                                                                                                                "type": "ATOMIC",
+                                                                                                                                "name": "technique"
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    },
+                                                                                                                    "right": {
+                                                                                                                        "type": "DISJUNCTION",
+                                                                                                                        "left": {
+                                                                                                                            "type": "NEGATION",
+                                                                                                                            "inner": {
+                                                                                                                                "type": "ATOMIC",
+                                                                                                                                "name": "green_tea"
+                                                                                                                            }
+                                                                                                                        },
+                                                                                                                        "right": {
+                                                                                                                            "type": "ATOMIC",
+                                                                                                                            "name": "tea"
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                },
+                                                                                                                "right": {
+                                                                                                                    "type": "DISJUNCTION",
+                                                                                                                    "left": {
+                                                                                                                        "type": "NEGATION",
+                                                                                                                        "inner": {
+                                                                                                                            "type": "ATOMIC",
+                                                                                                                            "name": "intensive_ferment"
+                                                                                                                        }
+                                                                                                                    },
+                                                                                                                    "right": {
+                                                                                                                        "type": "ATOMIC",
+                                                                                                                        "name": "ferment"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "right": {
+                                                                                                                "type": "DISJUNCTION",
+                                                                                                                "left": {
+                                                                                                                    "type": "NEGATION",
+                                                                                                                    "inner": {
+                                                                                                                        "type": "ATOMIC",
+                                                                                                                        "name": "mild_ferment"
+                                                                                                                    }
+                                                                                                                },
+                                                                                                                "right": {
+                                                                                                                    "type": "ATOMIC",
+                                                                                                                    "name": "ferment"
+                                                                                                                }
+                                                                                                            }
+                                                                                                        },
+                                                                                                        "right": {
+                                                                                                            "type": "DISJUNCTION",
+                                                                                                            "left": {
+                                                                                                                "type": "NEGATION",
+                                                                                                                "inner": {
+                                                                                                                    "type": "ATOMIC",
+                                                                                                                    "name": "moderate_ferment"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "right": {
+                                                                                                                "type": "ATOMIC",
+                                                                                                                "name": "ferment"
+                                                                                                            }
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "right": {
+                                                                                                        "type": "DISJUNCTION",
+                                                                                                        "left": {
+                                                                                                            "type": "NEGATION",
+                                                                                                            "inner": {
+                                                                                                                "type": "ATOMIC",
+                                                                                                                "name": "oolong_tea"
+                                                                                                            }
+                                                                                                        },
+                                                                                                        "right": {
+                                                                                                            "type": "ATOMIC",
+                                                                                                            "name": "tea"
+                                                                                                        }
+                                                                                                    }
+                                                                                                },
+                                                                                                "right": {
+                                                                                                    "type": "DISJUNCTION",
+                                                                                                    "left": {
+                                                                                                        "type": "NEGATION",
+                                                                                                        "inner": {
+                                                                                                            "type": "ATOMIC",
+                                                                                                            "name": "red_tea"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "right": {
+                                                                                                        "type": "ATOMIC",
+                                                                                                        "name": "tea"
+                                                                                                    }
+                                                                                                }
+                                                                                            },
+                                                                                            "right": {
+                                                                                                "type": "DISJUNCTION",
+                                                                                                "left": {
+                                                                                                    "type": "NEGATION",
+                                                                                                    "inner": {
+                                                                                                        "type": "ATOMIC",
+                                                                                                        "name": "roasting"
+                                                                                                    }
+                                                                                                },
+                                                                                                "right": {
+                                                                                                    "type": "ATOMIC",
+                                                                                                    "name": "technique"
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "right": {
+                                                                                            "type": "DISJUNCTION",
+                                                                                            "left": {
+                                                                                                "type": "NEGATION",
+                                                                                                "inner": {
+                                                                                                    "type": "ATOMIC",
+                                                                                                    "name": "slight_ferment"
+                                                                                                }
+                                                                                            },
+                                                                                            "right": {
+                                                                                                "type": "ATOMIC",
+                                                                                                "name": "ferment"
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    "right": {
+                                                                                        "type": "DISJUNCTION",
+                                                                                        "left": {
+                                                                                            "type": "NEGATION",
+                                                                                            "inner": {
+                                                                                                "type": "ATOMIC",
+                                                                                                "name": "sun-baking"
+                                                                                            }
+                                                                                        },
+                                                                                        "right": {
+                                                                                            "type": "ATOMIC",
+                                                                                            "name": "technique"
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                "right": {
+                                                                                    "type": "DISJUNCTION",
+                                                                                    "left": {
+                                                                                        "type": "NEGATION",
+                                                                                        "inner": {
+                                                                                            "type": "ATOMIC",
+                                                                                            "name": "white_tea"
+                                                                                        }
+                                                                                    },
+                                                                                    "right": {
+                                                                                        "type": "ATOMIC",
+                                                                                        "name": "tea"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            "right": {
+                                                                                "type": "DISJUNCTION",
+                                                                                "left": {
+                                                                                    "type": "NEGATION",
+                                                                                    "inner": {
+                                                                                        "type": "ATOMIC",
+                                                                                        "name": "yellow_tea"
+                                                                                    }
+                                                                                },
+                                                                                "right": {
+                                                                                    "type": "ATOMIC",
+                                                                                    "name": "tea"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "right": {
+                                                                            "type": "DISJUNCTION",
+                                                                            "left": {
+                                                                                "type": "NEGATION",
+                                                                                "inner": {
+                                                                                    "type": "ATOMIC",
+                                                                                    "name": "x1"
+                                                                                }
+                                                                            },
+                                                                            "right": {
+                                                                                "type": "ATOMIC",
+                                                                                "name": "x0"
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "DISJUNCTION",
+                                                                        "left": {
+                                                                            "type": "NEGATION",
+                                                                            "inner": {
+                                                                                "type": "ATOMIC",
+                                                                                "name": "x2"
+                                                                            }
+                                                                        },
+                                                                        "right": {
+                                                                            "type": "ATOMIC",
+                                                                            "name": "x0"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "right": {
+                                                                    "type": "DISJUNCTION",
+                                                                    "left": {
+                                                                        "type": "NEGATION",
+                                                                        "inner": {
+                                                                            "type": "ATOMIC",
+                                                                            "name": "x3"
+                                                                        }
+                                                                    },
+                                                                    "right": {
+                                                                        "type": "ATOMIC",
+                                                                        "name": "x0"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "right": {
+                                                                "type": "DISJUNCTION",
+                                                                "left": {
+                                                                    "type": "NEGATION",
+                                                                    "inner": {
+                                                                        "type": "UNIVERSAL",
+                                                                        "role": "r1",
+                                                                        "inner": {
+                                                                            "type": "CONJUNCTION",
+                                                                            "left": {
+                                                                                "type": "ATOMIC",
+                                                                                "name": "x1"
+                                                                            },
+                                                                            "right": {
+                                                                                "type": "ATOMIC",
+                                                                                "name": "x2"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "right": {
+                                                                    "type": "EXISTENTIAL",
+                                                                    "role": "r2",
+                                                                    "inner": {
+                                                                        "type": "DISJUNCTION",
+                                                                        "left": {
+                                                                            "type": "ATOMIC",
+                                                                            "name": "x2"
+                                                                        },
+                                                                        "right": {
+                                                                            "type": "ATOMIC",
+                                                                            "name": "x3"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "right": {
+                                                            "type": "DISJUNCTION",
+                                                            "left": {
+                                                                "type": "NEGATION",
+                                                                "inner": {
+                                                                    "type": "ATOMIC",
+                                                                    "name": "black_tea"
+                                                                }
+                                                            },
+                                                            "right": {
+                                                                "type": "EXISTENTIAL",
+                                                                "role": "has_ferment",
+                                                                "inner": {
+                                                                    "type": "ATOMIC",
+                                                                    "name": "complete_ferment"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "right": {
+                                                        "type": "DISJUNCTION",
+                                                        "left": {
+                                                            "type": "NEGATION",
+                                                            "inner": {
+                                                                "type": "EXISTENTIAL",
+                                                                "role": "has_ferment",
+                                                                "inner": {
+                                                                    "type": "ATOMIC",
+                                                                    "name": "complete_ferment"
+                                                                }
+                                                            }
+                                                        },
+                                                        "right": {
+                                                            "type": "ATOMIC",
+                                                            "name": "black_tea"
+                                                        }
+                                                    }
+                                                },
+                                                "right": {
+                                                    "type": "DISJUNCTION",
+                                                    "left": {
+                                                        "type": "NEGATION",
+                                                        "inner": {
+                                                            "type": "ATOMIC",
+                                                            "name": "cyan_tea"
+                                                        }
+                                                    },
+                                                    "right": {
+                                                        "type": "ATOMIC",
+                                                        "name": "oolong_tea"
+                                                    }
+                                                }
+                                            },
+                                            "right": {
+                                                "type": "DISJUNCTION",
+                                                "left": {
+                                                    "type": "NEGATION",
+                                                    "inner": {
+                                                        "type": "ATOMIC",
+                                                        "name": "oolong_tea"
+                                                    }
+                                                },
+                                                "right": {
+                                                    "type": "ATOMIC",
+                                                    "name": "cyan_tea"
+                                                }
+                                            }
+                                        },
+                                        "right": {
+                                            "type": "DISJUNCTION",
+                                            "left": {
+                                                "type": "NEGATION",
+                                                "inner": {
+                                                    "type": "ATOMIC",
+                                                    "name": "green_tea"
+                                                }
+                                            },
+                                            "right": {
+                                                "type": "NEGATION",
+                                                "inner": {
+                                                    "type": "EXISTENTIAL",
+                                                    "role": "has_ferment",
+                                                    "inner": {
+                                                        "type": "ATOMIC",
+                                                        "name": "ferment"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "right": {
+                                        "type": "DISJUNCTION",
+                                        "left": {
+                                            "type": "NEGATION",
+                                            "inner": {
+                                                "type": "NEGATION",
+                                                "inner": {
+                                                    "type": "EXISTENTIAL",
+                                                    "role": "has_ferment",
+                                                    "inner": {
+                                                        "type": "ATOMIC",
+                                                        "name": "ferment"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "right": {
+                                            "type": "ATOMIC",
+                                            "name": "green_tea"
+                                        }
+                                    }
+                                },
+                                "right": {
+                                    "type": "DISJUNCTION",
+                                    "left": {
+                                        "type": "NEGATION",
+                                        "inner": {
+                                            "type": "ATOMIC",
+                                            "name": "oolong_tea"
+                                        }
+                                    },
+                                    "right": {
+                                        "type": "EXISTENTIAL",
+                                        "role": "has_ferment",
+                                        "inner": {
+                                            "type": "ATOMIC",
+                                            "name": "mild_ferment"
+                                        }
+                                    }
+                                }
+                            },
+                            "right": {
+                                "type": "DISJUNCTION",
+                                "left": {
+                                    "type": "NEGATION",
+                                    "inner": {
+                                        "type": "EXISTENTIAL",
+                                        "role": "has_ferment",
+                                        "inner": {
+                                            "type": "ATOMIC",
+                                            "name": "mild_ferment"
+                                        }
+                                    }
+                                },
+                                "right": {
+                                    "type": "ATOMIC",
+                                    "name": "oolong_tea"
+                                }
+                            }
+                        },
+                        "right": {
+                            "type": "DISJUNCTION",
+                            "left": {
+                                "type": "NEGATION",
+                                "inner": {
+                                    "type": "ATOMIC",
+                                    "name": "red_tea"
+                                }
+                            },
+                            "right": {
+                                "type": "EXISTENTIAL",
+                                "role": "has_ferment",
+                                "inner": {
+                                    "type": "ATOMIC",
+                                    "name": "intensive_ferment"
+                                }
+                            }
+                        }
+                    },
+                    "right": {
+                        "type": "DISJUNCTION",
+                        "left": {
+                            "type": "NEGATION",
+                            "inner": {
+                                "type": "EXISTENTIAL",
+                                "role": "has_ferment",
+                                "inner": {
+                                    "type": "ATOMIC",
+                                    "name": "intensive_ferment"
+                                }
+                            }
+                        },
+                        "right": {
+                            "type": "ATOMIC",
+                            "name": "red_tea"
+                        }
+                    }
+                },
+                "right": {
+                    "type": "DISJUNCTION",
+                    "left": {
+                        "type": "NEGATION",
+                        "inner": {
+                            "type": "ATOMIC",
+                            "name": "white_tea"
+                        }
+                    },
+                    "right": {
+                        "type": "EXISTENTIAL",
+                        "role": "has_ferment",
+                        "inner": {
+                            "type": "ATOMIC",
+                            "name": "moderate_ferment"
+                        }
+                    }
+                }
+            },
+            "right": {
+                "type": "DISJUNCTION",
+                "left": {
+                    "type": "NEGATION",
+                    "inner": {
+                        "type": "EXISTENTIAL",
+                        "role": "has_ferment",
+                        "inner": {
+                            "type": "ATOMIC",
+                            "name": "moderate_ferment"
+                        }
+                    }
+                },
+                "right": {
+                    "type": "ATOMIC",
+                    "name": "white_tea"
+                }
+            }
+        },
+        "right": {
+            "type": "DISJUNCTION",
+            "left": {
+                "type": "NEGATION",
+                "inner": {
+                    "type": "ATOMIC",
+                    "name": "yellow_tea"
+                }
+            },
+            "right": {
+                "type": "EXISTENTIAL",
+                "role": "has_ferment",
+                "inner": {
+                    "type": "ATOMIC",
+                    "name": "slight_ferment"
+                }
+            }
+        }
+    },
+    "right": {
+        "type": "DISJUNCTION",
+        "left": {
+            "type": "NEGATION",
+            "inner": {
+                "type": "EXISTENTIAL",
+                "role": "has_ferment",
+                "inner": {
+                    "type": "ATOMIC",
+                    "name": "slight_ferment"
+                }
+            }
+        },
+        "right": {
+            "type": "ATOMIC",
+            "name": "yellow_tea"
+        }
+    }
+}

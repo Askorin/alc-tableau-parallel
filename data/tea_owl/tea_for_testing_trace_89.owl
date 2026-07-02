@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/ontologies/2010/6/26/tea.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.semanticweb.org/ontologies/2010/6/26/tea.owl">
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#black_tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#complete_ferment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#cyan_tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ferment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#frying"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#green_tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#intensive_ferment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#mild_ferment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#moderate_ferment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#oolong_tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#red_tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#roasting"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#slight_ferment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#sun-baking"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#technique"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#white_tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#x0"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#yellow_tea"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_ferment"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#r0"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#black_tea"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#has_ferment"/>
+            <Class IRI="#complete_ferment"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#cyan_tea"/>
+        <Class IRI="#oolong_tea"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#green_tea"/>
+        <ObjectComplementOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#has_ferment"/>
+                <Class IRI="#ferment"/>
+            </ObjectSomeValuesFrom>
+        </ObjectComplementOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#oolong_tea"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#has_ferment"/>
+            <Class IRI="#mild_ferment"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#red_tea"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#has_ferment"/>
+            <Class IRI="#intensive_ferment"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#white_tea"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#has_ferment"/>
+            <Class IRI="#moderate_ferment"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#yellow_tea"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#has_ferment"/>
+            <Class IRI="#slight_ferment"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#black_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#complete_ferment"/>
+        <Class IRI="#ferment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#cyan_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ferment"/>
+        <Class IRI="#technique"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#frying"/>
+        <Class IRI="#technique"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#green_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#intensive_ferment"/>
+        <Class IRI="#ferment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#mild_ferment"/>
+        <Class IRI="#ferment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#moderate_ferment"/>
+        <Class IRI="#ferment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#oolong_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#red_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#roasting"/>
+        <Class IRI="#technique"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#slight_ferment"/>
+        <Class IRI="#ferment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#sun-baking"/>
+        <Class IRI="#technique"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#white_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#yellow_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#black_tea"/>
+        <Class IRI="#green_tea"/>
+        <Class IRI="#oolong_tea"/>
+        <Class IRI="#red_tea"/>
+        <Class IRI="#white_tea"/>
+        <Class IRI="#yellow_tea"/>
+    </DisjointClasses>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#has_ferment"/>
+        <ObjectProperty abbreviatedIRI=":topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_ferment"/>
+        <Class IRI="#tea"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#has_ferment"/>
+        <Class IRI="#ferment"/>
+    </ObjectPropertyRange>
+
+
+<!--start gci-->
+<Declaration><Class IRI="#x1"/></Declaration><SubClassOf><Class IRI="#x1"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r1"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r1"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x2"/></Declaration><SubClassOf><Class IRI="#x2"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r2"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r2"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x3"/></Declaration><SubClassOf><Class IRI="#x3"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r3"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r3"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x4"/></Declaration><SubClassOf><Class IRI="#x4"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r4"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r4"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x5"/></Declaration><SubClassOf><Class IRI="#x5"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r5"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r5"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x6"/></Declaration><SubClassOf><Class IRI="#x6"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r6"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r6"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x7"/></Declaration><SubClassOf><Class IRI="#x7"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r7"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r7"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x8"/></Declaration><SubClassOf><Class IRI="#x8"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r8"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r8"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x9"/></Declaration><SubClassOf><Class IRI="#x9"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r9"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r9"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x10"/></Declaration><SubClassOf><Class IRI="#x10"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r10"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r10"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x11"/></Declaration><SubClassOf><Class IRI="#x11"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r11"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r11"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x12"/></Declaration><SubClassOf><Class IRI="#x12"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r12"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r12"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x13"/></Declaration><SubClassOf><Class IRI="#x13"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r13"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r13"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x14"/></Declaration><SubClassOf><Class IRI="#x14"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r14"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r14"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x15"/></Declaration><SubClassOf><Class IRI="#x15"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r15"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r15"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x16"/></Declaration><SubClassOf><Class IRI="#x16"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r16"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r16"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x17"/></Declaration><SubClassOf><Class IRI="#x17"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r17"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r17"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x18"/></Declaration><SubClassOf><Class IRI="#x18"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r18"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r18"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x19"/></Declaration><SubClassOf><Class IRI="#x19"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r19"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r19"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x20"/></Declaration><SubClassOf><Class IRI="#x20"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r20"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r20"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x21"/></Declaration><SubClassOf><Class IRI="#x21"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r21"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r21"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x22"/></Declaration><SubClassOf><Class IRI="#x22"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r22"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r22"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x23"/></Declaration><SubClassOf><Class IRI="#x23"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r23"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r23"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x24"/></Declaration><SubClassOf><Class IRI="#x24"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r24"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r24"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x25"/></Declaration><SubClassOf><Class IRI="#x25"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r25"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r25"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x26"/></Declaration><SubClassOf><Class IRI="#x26"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r26"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r26"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x27"/></Declaration><SubClassOf><Class IRI="#x27"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r27"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r27"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x28"/></Declaration><SubClassOf><Class IRI="#x28"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r28"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r28"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x29"/></Declaration><SubClassOf><Class IRI="#x29"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r29"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r29"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x30"/></Declaration><SubClassOf><Class IRI="#x30"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r30"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r30"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x31"/></Declaration><SubClassOf><Class IRI="#x31"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r31"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r31"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x32"/></Declaration><SubClassOf><Class IRI="#x32"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r32"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r32"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x33"/></Declaration><SubClassOf><Class IRI="#x33"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r33"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r33"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x34"/></Declaration><SubClassOf><Class IRI="#x34"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r34"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r34"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x35"/></Declaration><SubClassOf><Class IRI="#x35"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r35"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r35"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x36"/></Declaration><SubClassOf><Class IRI="#x36"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r36"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r36"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x37"/></Declaration><SubClassOf><Class IRI="#x37"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r37"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r37"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x38"/></Declaration><SubClassOf><Class IRI="#x38"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r38"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r38"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x39"/></Declaration><SubClassOf><Class IRI="#x39"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r39"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r39"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x40"/></Declaration><SubClassOf><Class IRI="#x40"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r40"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r40"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x41"/></Declaration><SubClassOf><Class IRI="#x41"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r41"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r41"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x42"/></Declaration><SubClassOf><Class IRI="#x42"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r42"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r42"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x43"/></Declaration><SubClassOf><Class IRI="#x43"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r43"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r43"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x44"/></Declaration><SubClassOf><Class IRI="#x44"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r44"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r44"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x45"/></Declaration><SubClassOf><Class IRI="#x45"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r45"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r45"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x46"/></Declaration><SubClassOf><Class IRI="#x46"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r46"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r46"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x47"/></Declaration><SubClassOf><Class IRI="#x47"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r47"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r47"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x48"/></Declaration><SubClassOf><Class IRI="#x48"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r48"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r48"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x49"/></Declaration><SubClassOf><Class IRI="#x49"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r49"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r49"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x50"/></Declaration><SubClassOf><Class IRI="#x50"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r50"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r50"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x51"/></Declaration><SubClassOf><Class IRI="#x51"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r51"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r51"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x52"/></Declaration><SubClassOf><Class IRI="#x52"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r52"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r52"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x53"/></Declaration><SubClassOf><Class IRI="#x53"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r53"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r53"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x54"/></Declaration><SubClassOf><Class IRI="#x54"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r54"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r54"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x55"/></Declaration><SubClassOf><Class IRI="#x55"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r55"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r55"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x56"/></Declaration><SubClassOf><Class IRI="#x56"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r56"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r56"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x57"/></Declaration><SubClassOf><Class IRI="#x57"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r57"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r57"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x58"/></Declaration><SubClassOf><Class IRI="#x58"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r58"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r58"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x59"/></Declaration><SubClassOf><Class IRI="#x59"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r59"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r59"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x60"/></Declaration><SubClassOf><Class IRI="#x60"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r60"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r60"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x61"/></Declaration><SubClassOf><Class IRI="#x61"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r61"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r61"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x62"/></Declaration><SubClassOf><Class IRI="#x62"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r62"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r62"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x63"/></Declaration><SubClassOf><Class IRI="#x63"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r63"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r63"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x64"/></Declaration><SubClassOf><Class IRI="#x64"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r64"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r64"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x65"/></Declaration><SubClassOf><Class IRI="#x65"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r65"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r65"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x66"/></Declaration><SubClassOf><Class IRI="#x66"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r66"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r66"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x67"/></Declaration><SubClassOf><Class IRI="#x67"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r67"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r67"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x68"/></Declaration><SubClassOf><Class IRI="#x68"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r68"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r68"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x69"/></Declaration><SubClassOf><Class IRI="#x69"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r69"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r69"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x70"/></Declaration><SubClassOf><Class IRI="#x70"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r70"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r70"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x71"/></Declaration><SubClassOf><Class IRI="#x71"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r71"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r71"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x72"/></Declaration><SubClassOf><Class IRI="#x72"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r72"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r72"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x73"/></Declaration><SubClassOf><Class IRI="#x73"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r73"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r73"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x74"/></Declaration><SubClassOf><Class IRI="#x74"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r74"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r74"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x75"/></Declaration><SubClassOf><Class IRI="#x75"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r75"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r75"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x76"/></Declaration><SubClassOf><Class IRI="#x76"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r76"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r76"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x77"/></Declaration><SubClassOf><Class IRI="#x77"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r77"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r77"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x78"/></Declaration><SubClassOf><Class IRI="#x78"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r78"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r78"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x79"/></Declaration><SubClassOf><Class IRI="#x79"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r79"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r79"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x80"/></Declaration><SubClassOf><Class IRI="#x80"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r80"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r80"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x81"/></Declaration><SubClassOf><Class IRI="#x81"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r81"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r81"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x82"/></Declaration><SubClassOf><Class IRI="#x82"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r82"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r82"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x83"/></Declaration><SubClassOf><Class IRI="#x83"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r83"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r83"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x84"/></Declaration><SubClassOf><Class IRI="#x84"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r84"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r84"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x85"/></Declaration><SubClassOf><Class IRI="#x85"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r85"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r85"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x86"/></Declaration><SubClassOf><Class IRI="#x86"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r86"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r86"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x87"/></Declaration><SubClassOf><Class IRI="#x87"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r87"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r87"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x88"/></Declaration><SubClassOf><Class IRI="#x88"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r88"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r88"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x89"/></Declaration><SubClassOf><Class IRI="#x89"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r89"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r89"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x90"/></Declaration><SubClassOf><Class IRI="#x90"/><Class IRI="#x0"/></SubClassOf><SubClassOf><ObjectUnionOf><ObjectAllValuesFrom><ObjectProperty IRI="#r1"/><ObjectIntersectionOf><Class IRI="#x1"/><Class IRI="#x2"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r3"/><ObjectIntersectionOf><Class IRI="#x3"/><Class IRI="#x4"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r5"/><ObjectIntersectionOf><Class IRI="#x5"/><Class IRI="#x6"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r7"/><ObjectIntersectionOf><Class IRI="#x7"/><Class IRI="#x8"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r9"/><ObjectIntersectionOf><Class IRI="#x9"/><Class IRI="#x10"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r11"/><ObjectIntersectionOf><Class IRI="#x11"/><Class IRI="#x12"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r13"/><ObjectIntersectionOf><Class IRI="#x13"/><Class IRI="#x14"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r15"/><ObjectIntersectionOf><Class IRI="#x15"/><Class IRI="#x16"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r17"/><ObjectIntersectionOf><Class IRI="#x17"/><Class IRI="#x18"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r19"/><ObjectIntersectionOf><Class IRI="#x19"/><Class IRI="#x20"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r21"/><ObjectIntersectionOf><Class IRI="#x21"/><Class IRI="#x22"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r23"/><ObjectIntersectionOf><Class IRI="#x23"/><Class IRI="#x24"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r25"/><ObjectIntersectionOf><Class IRI="#x25"/><Class IRI="#x26"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r27"/><ObjectIntersectionOf><Class IRI="#x27"/><Class IRI="#x28"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r29"/><ObjectIntersectionOf><Class IRI="#x29"/><Class IRI="#x30"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r31"/><ObjectIntersectionOf><Class IRI="#x31"/><Class IRI="#x32"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r33"/><ObjectIntersectionOf><Class IRI="#x33"/><Class IRI="#x34"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r35"/><ObjectIntersectionOf><Class IRI="#x35"/><Class IRI="#x36"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r37"/><ObjectIntersectionOf><Class IRI="#x37"/><Class IRI="#x38"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r39"/><ObjectIntersectionOf><Class IRI="#x39"/><Class IRI="#x40"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r41"/><ObjectIntersectionOf><Class IRI="#x41"/><Class IRI="#x42"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r43"/><ObjectIntersectionOf><Class IRI="#x43"/><Class IRI="#x44"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r45"/><ObjectIntersectionOf><Class IRI="#x45"/><Class IRI="#x46"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r47"/><ObjectIntersectionOf><Class IRI="#x47"/><Class IRI="#x48"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r49"/><ObjectIntersectionOf><Class IRI="#x49"/><Class IRI="#x50"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r51"/><ObjectIntersectionOf><Class IRI="#x51"/><Class IRI="#x52"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r53"/><ObjectIntersectionOf><Class IRI="#x53"/><Class IRI="#x54"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r55"/><ObjectIntersectionOf><Class IRI="#x55"/><Class IRI="#x56"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r57"/><ObjectIntersectionOf><Class IRI="#x57"/><Class IRI="#x58"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r59"/><ObjectIntersectionOf><Class IRI="#x59"/><Class IRI="#x60"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r61"/><ObjectIntersectionOf><Class IRI="#x61"/><Class IRI="#x62"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r63"/><ObjectIntersectionOf><Class IRI="#x63"/><Class IRI="#x64"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r65"/><ObjectIntersectionOf><Class IRI="#x65"/><Class IRI="#x66"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r67"/><ObjectIntersectionOf><Class IRI="#x67"/><Class IRI="#x68"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r69"/><ObjectIntersectionOf><Class IRI="#x69"/><Class IRI="#x70"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r71"/><ObjectIntersectionOf><Class IRI="#x71"/><Class IRI="#x72"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r73"/><ObjectIntersectionOf><Class IRI="#x73"/><Class IRI="#x74"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r75"/><ObjectIntersectionOf><Class IRI="#x75"/><Class IRI="#x76"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r77"/><ObjectIntersectionOf><Class IRI="#x77"/><Class IRI="#x78"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r79"/><ObjectIntersectionOf><Class IRI="#x79"/><Class IRI="#x80"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r81"/><ObjectIntersectionOf><Class IRI="#x81"/><Class IRI="#x82"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r83"/><ObjectIntersectionOf><Class IRI="#x83"/><Class IRI="#x84"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r85"/><ObjectIntersectionOf><Class IRI="#x85"/><Class IRI="#x86"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r87"/><ObjectIntersectionOf><Class IRI="#x87"/><Class IRI="#x88"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r89"/><ObjectIntersectionOf><Class IRI="#x89"/><Class IRI="#x90"/></ObjectIntersectionOf></ObjectAllValuesFrom></ObjectUnionOf><ObjectIntersectionOf><ObjectSomeValuesFrom><ObjectProperty IRI="#r2"/><ObjectUnionOf><Class IRI="#x2"/><Class IRI="#x3"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r4"/><ObjectUnionOf><Class IRI="#x4"/><Class IRI="#x5"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r6"/><ObjectUnionOf><Class IRI="#x6"/><Class IRI="#x7"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r8"/><ObjectUnionOf><Class IRI="#x8"/><Class IRI="#x9"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r10"/><ObjectUnionOf><Class IRI="#x10"/><Class IRI="#x11"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r12"/><ObjectUnionOf><Class IRI="#x12"/><Class IRI="#x13"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r14"/><ObjectUnionOf><Class IRI="#x14"/><Class IRI="#x15"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r16"/><ObjectUnionOf><Class IRI="#x16"/><Class IRI="#x17"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r18"/><ObjectUnionOf><Class IRI="#x18"/><Class IRI="#x19"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r20"/><ObjectUnionOf><Class IRI="#x20"/><Class IRI="#x21"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r22"/><ObjectUnionOf><Class IRI="#x22"/><Class IRI="#x23"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r24"/><ObjectUnionOf><Class IRI="#x24"/><Class IRI="#x25"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r26"/><ObjectUnionOf><Class IRI="#x26"/><Class IRI="#x27"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r28"/><ObjectUnionOf><Class IRI="#x28"/><Class IRI="#x29"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r30"/><ObjectUnionOf><Class IRI="#x30"/><Class IRI="#x31"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r32"/><ObjectUnionOf><Class IRI="#x32"/><Class IRI="#x33"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r34"/><ObjectUnionOf><Class IRI="#x34"/><Class IRI="#x35"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r36"/><ObjectUnionOf><Class IRI="#x36"/><Class IRI="#x37"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r38"/><ObjectUnionOf><Class IRI="#x38"/><Class IRI="#x39"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r40"/><ObjectUnionOf><Class IRI="#x40"/><Class IRI="#x41"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r42"/><ObjectUnionOf><Class IRI="#x42"/><Class IRI="#x43"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r44"/><ObjectUnionOf><Class IRI="#x44"/><Class IRI="#x45"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r46"/><ObjectUnionOf><Class IRI="#x46"/><Class IRI="#x47"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r48"/><ObjectUnionOf><Class IRI="#x48"/><Class IRI="#x49"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r50"/><ObjectUnionOf><Class IRI="#x50"/><Class IRI="#x51"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r52"/><ObjectUnionOf><Class IRI="#x52"/><Class IRI="#x53"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r54"/><ObjectUnionOf><Class IRI="#x54"/><Class IRI="#x55"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r56"/><ObjectUnionOf><Class IRI="#x56"/><Class IRI="#x57"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r58"/><ObjectUnionOf><Class IRI="#x58"/><Class IRI="#x59"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r60"/><ObjectUnionOf><Class IRI="#x60"/><Class IRI="#x61"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r62"/><ObjectUnionOf><Class IRI="#x62"/><Class IRI="#x63"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r64"/><ObjectUnionOf><Class IRI="#x64"/><Class IRI="#x65"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r66"/><ObjectUnionOf><Class IRI="#x66"/><Class IRI="#x67"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r68"/><ObjectUnionOf><Class IRI="#x68"/><Class IRI="#x69"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r70"/><ObjectUnionOf><Class IRI="#x70"/><Class IRI="#x71"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r72"/><ObjectUnionOf><Class IRI="#x72"/><Class IRI="#x73"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r74"/><ObjectUnionOf><Class IRI="#x74"/><Class IRI="#x75"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r76"/><ObjectUnionOf><Class IRI="#x76"/><Class IRI="#x77"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r78"/><ObjectUnionOf><Class IRI="#x78"/><Class IRI="#x79"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r80"/><ObjectUnionOf><Class IRI="#x80"/><Class IRI="#x81"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r82"/><ObjectUnionOf><Class IRI="#x82"/><Class IRI="#x83"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r84"/><ObjectUnionOf><Class IRI="#x84"/><Class IRI="#x85"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r86"/><ObjectUnionOf><Class IRI="#x86"/><Class IRI="#x87"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r88"/><ObjectUnionOf><Class IRI="#x88"/><Class IRI="#x89"/></ObjectUnionOf></ObjectSomeValuesFrom></ObjectIntersectionOf></SubClassOf>
+<!--end gci-->
+
+
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+

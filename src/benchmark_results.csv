@@ -1,0 +1,5 @@
+Mode,Threads,Scale,Load_ms,Consistency_ms,Classification_ms
+Serial,1,55,7.51232,17.2317,643686
+Parallel,1,55,1.24697,4.17809,656951
+Parallel,2,55,1.48078,7.33013,664750
+Parallel,3,55,1.22513,13.9174,670315
