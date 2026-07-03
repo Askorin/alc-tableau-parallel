@@ -6,12 +6,13 @@
 #include "concept.h"
 #include <cstddef>
 #include <cstdint>
+#include <unordered_map>
 
 class Reasoner {
   public:
     virtual ~Reasoner() = default;
 
-    // Estadisticas por test de satisfacibilidad 
+    // Estadisticas por test de satisfacibilidad
     // mu = ramas conjuntivas del primer frontier generado (paper, Eq. 3)
     struct TestStats {
         size_t mu = 0;
@@ -19,5 +20,8 @@ class Reasoner {
     };
     TestStats stats;
 
-    virtual bool isSatisfiable(const Concept* query, const Concept* tbox = nullptr) = 0;
+    virtual bool
+    isSatisfiable(const Concept* query,
+                  const std::unordered_map<Concept*, Concept*>& defs,
+                  const Concept* tbox = nullptr) = 0;
 };

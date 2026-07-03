@@ -27,9 +27,9 @@ class ParallelReasoner : public Reasoner {
             if (c->type == ConceptType::NEGATION) {
                 const auto* neg = static_cast<const NegationConcept*>(c);
                 if (arena.hasLabel(node_idx, neg->inner)) {
-                    //const_cast<ThreadLocalArena&>(arena)
-                    //    .getNode(node_idx)
-                    //    .isClashed = true;
+                    // const_cast<ThreadLocalArena&>(arena)
+                    //     .getNode(node_idx)
+                    //     .isClashed = true;
                     return true;
                 }
             }
@@ -65,7 +65,9 @@ class ParallelReasoner : public Reasoner {
     }
 
     // FASE A: Solo resuelve ANDs, no se generan hijos aquí.
-    bool saturatePropositional(size_t node_idx, ThreadLocalArena& arena) {
+    bool
+    saturatePropositional(size_t node_idx, ThreadLocalArena& arena,
+                          const std::unordered_map<Concept*, Concept*>& defs) {
         bool changed = true;
         while (changed) {
             changed = false;
@@ -83,6 +85,14 @@ class ParallelReasoner : public Reasoner {
                     }
                     if (!arena.hasLabel(node_idx, conj->right)) {
                         arena.addLabelToNode(node_idx, conj->right);
+                        changed = true;
+                    }
+                } else if (c->type == ConceptType::ATOMIC) {
+                    if (auto it = defs.find(c);
+                        it != defs.end() &&
+                        !arena.hasLabel(node_idx, it->second())) {
+
+                        arena.addLabelToNode(node_idx, it->second());
                         changed = true;
                     }
                 }
@@ -209,12 +219,13 @@ class ParallelReasoner : public Reasoner {
 
     bool processNode(size_t node_idx, ThreadLocalArena& arena, int depth,
                      std::vector<size_t>& ancestors,
+                     const std::unordered_map<Concept*, Concept*>& defs,
                      const std::atomic<bool>* cancel = nullptr) {
 
         // Un hermano en un frontier paralelo superior ya clasheó: nuestro
         // resultado es irrelevante, abortamos barato. (Sin esto, un task
         // profundo nunca ve el flag y explora subárboles que el orden serial
-        // jamás tocaría) 
+        // jamás tocaría)
         if (cancel && cancel->load(std::memory_order_relaxed))
             return false;
 
@@ -227,7 +238,7 @@ class ParallelReasoner : public Reasoner {
             return true; // Blocked = SAT Valid Cycle
 
         // Saturación proposicional (ANDs)
-        if (!saturatePropositional(node_idx, arena))
+        if (!saturatePropositional(node_idx, arena, defs))
             return false;
 
         // Disyunciones (ORs)
@@ -258,7 +269,7 @@ class ParallelReasoner : public Reasoner {
 
                 std::vector<size_t> local_ancestors = ancestors;
                 if (!processNode(frontier[i], task_arena, depth + 1,
-                                 local_ancestors, &global_clash)) {
+                                 local_ancestors, defs, &global_clash)) {
                     global_clash.store(true, std::memory_order_relaxed);
                 }
             }
@@ -266,7 +277,7 @@ class ParallelReasoner : public Reasoner {
             for (size_t child_idx : frontier) {
                 if (global_clash.load(std::memory_order_relaxed))
                     break;
-                if (!processNode(child_idx, arena, depth + 1, ancestors,
+                if (!processNode(child_idx, arena, depth + 1, ancestors, defs,
                                  cancel)) {
                     global_clash.store(true, std::memory_order_relaxed);
                 }
@@ -282,6 +293,7 @@ class ParallelReasoner : public Reasoner {
     explicit ParallelReasoner() = default;
 
     bool isSatisfiable(const Concept* query,
+                       const std::unordered_map<Concept*, Concept*>& defs,
                        const Concept* tbox = nullptr) override {
         tbox_ = tbox;
         ScopedArena master_scoped(pool);
@@ -297,6 +309,6 @@ class ParallelReasoner : public Reasoner {
         std::vector<size_t> root_ancestors;
 
         // Invocamos el dispatcher maestro
-        return processNode(root_idx, arena, 0, root_ancestors);
+        return processNode(root_idx, arena, 0, root_ancestors, defs);
     }
 };

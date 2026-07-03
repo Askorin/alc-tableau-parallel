@@ -4,7 +4,7 @@
 
 EXECUTABLE="./main"
 DATA_DIR="../data/tea_ast"
-INDICES=(${INDICES:-3 5 8 13})
+INDICES=(${INDICES:-3 5 8})
 THREADS=(${THREADS:-1 2 3 4})
 REPS=${REPS:-3}
 CSV_FILE="benchmark_results.csv"
