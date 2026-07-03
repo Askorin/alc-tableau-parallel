@@ -11,6 +11,7 @@
 #include "thread_local_arena.h"
 #include <algorithm>
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
 class SerialReasoner : public Reasoner {
@@ -23,9 +24,6 @@ class SerialReasoner : public Reasoner {
             if (c->type == ConceptType::NEGATION) {
                 const auto* neg = static_cast<const NegationConcept*>(c);
                 if (arena.hasLabel(node_idx, neg->inner)) {
-                    //const_cast<ThreadLocalArena&>(arena)
-                    //    .getNode(node_idx)
-                    //    .isClashed = true;
                     return true;
                 }
             }
@@ -60,7 +58,10 @@ class SerialReasoner : public Reasoner {
         return idx;
     }
 
-    bool saturatePropositional(size_t node_idx, ThreadLocalArena& arena) {
+    // FASE A: Solo resuelve ANDs y unfolding lazy, no se generan hijos aquí.
+    bool saturatePropositional(
+        size_t node_idx, ThreadLocalArena& arena,
+        const std::unordered_map<const Concept*, const Concept*>& defs) {
         bool changed = true;
         while (changed) {
             changed = false;
@@ -78,6 +79,15 @@ class SerialReasoner : public Reasoner {
                     }
                     if (!arena.hasLabel(node_idx, conj->right)) {
                         arena.addLabelToNode(node_idx, conj->right);
+                        changed = true;
+                    }
+                } else if (c->type == ConceptType::ATOMIC) {
+                    // Unfolding lazy: A presente dispara su definicion absorbida
+                    if (auto it = defs.find(c);
+                        it != defs.end() &&
+                        !arena.hasLabel(node_idx, it->second)) {
+
+                        arena.addLabelToNode(node_idx, it->second);
                         changed = true;
                     }
                 }
@@ -152,8 +162,10 @@ class SerialReasoner : public Reasoner {
         return false;
     }
 
-    bool resolveDisjunctions(size_t node_idx, ThreadLocalArena& arena,
-                             std::vector<size_t>& ancestors) {
+    bool resolveDisjunctions(
+        size_t node_idx, ThreadLocalArena& arena,
+        std::vector<size_t>& ancestors,
+        const std::unordered_map<const Concept*, const Concept*>& defs) {
         auto current_labels = arena.getLabels(node_idx);
         std::vector<const Concept*> labels_snapshot(current_labels.begin(),
                                                     current_labels.end());
@@ -170,7 +182,7 @@ class SerialReasoner : public Reasoner {
                     copyLeft.bindPrefix(arena, arena.saveState(), node_idx);
                     copyLeft.addLabelToNode(node_idx, disj->left);
 
-                    if (processNode(node_idx, copyLeft, ancestors)) {
+                    if (processNode(node_idx, copyLeft, ancestors, defs)) {
                         return true;
                     }
 
@@ -179,40 +191,42 @@ class SerialReasoner : public Reasoner {
                     copyRight.bindPrefix(arena, arena.saveState(), node_idx);
                     copyRight.addLabelToNode(node_idx, disj->right);
 
-                    return processNode(node_idx, copyRight, ancestors);
+                    return processNode(node_idx, copyRight, ancestors, defs);
                 }
             }
         }
         return false;
     }
 
-    bool processNode(size_t node_idx, ThreadLocalArena& arena,
-                     std::vector<size_t>& ancestors) {
+    bool processNode(
+        size_t node_idx, ThreadLocalArena& arena,
+        std::vector<size_t>& ancestors,
+        const std::unordered_map<const Concept*, const Concept*>& defs) {
         ++stats.nodes;
         if (checkForClash(node_idx, arena))
             return false;
         if (isBlocked(node_idx, ancestors, arena))
             return true; // Blocked = SAT Valid Cycle
 
-        if (!saturatePropositional(node_idx, arena))
+        if (!saturatePropositional(node_idx, arena, defs))
             return false;
 
         if (hasPendingDisjunctions(node_idx, arena)) {
-            return resolveDisjunctions(node_idx, arena, ancestors);
+            return resolveDisjunctions(node_idx, arena, ancestors, defs);
         }
 
         std::vector<size_t> frontier = generateFrontier(node_idx, arena);
         // mu: primer frontier no vacio del test = ramas conjuntivas
-        // disponibles en el primer punto paralelizable 
+        // disponibles en el primer punto paralelizable
         if (stats.mu == 0 && !frontier.empty())
             stats.mu = frontier.size();
         if (frontier.empty())
-            return true; 
+            return true;
 
         ancestors.push_back(node_idx);
 
         for (size_t child_idx : frontier) {
-            if (!processNode(child_idx, arena, ancestors)) {
+            if (!processNode(child_idx, arena, ancestors, defs)) {
                 ancestors.pop_back();
                 return false;
             }
@@ -226,8 +240,10 @@ class SerialReasoner : public Reasoner {
     // El pool member se default-construye (lazy, sin arenas pre-alocadas)
     explicit SerialReasoner() = default;
 
-    bool isSatisfiable(const Concept* query,
-                       const Concept* tbox = nullptr) override {
+    bool isSatisfiable(
+        const Concept* query,
+        const std::unordered_map<const Concept*, const Concept*>& defs,
+        const Concept* tbox = nullptr) override {
         tbox_ = tbox;
         stats = {};
         ScopedArena master_scoped(pool);
@@ -238,6 +254,6 @@ class SerialReasoner : public Reasoner {
             arena.addLabelToNode(root_idx, tbox_);
 
         std::vector<size_t> root_ancestors;
-        return processNode(root_idx, arena, root_ancestors);
+        return processNode(root_idx, arena, root_ancestors, defs);
     }
 };

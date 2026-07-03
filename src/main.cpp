@@ -8,13 +8,17 @@
 #include <iostream>
 #include <memory>
 #include <omp.h>
+#include <unordered_map>
 
-void runUnitTests() {
+template <typename ReasonerT>
+void runUnitTestsWith() {
     ConceptManager m;
-    //SerialReasoner reasoner;
-    ParallelReasoner reasoner;
+    ReasonerT reasoner;
 
-    // Atomicos Base 
+    // Sin absorcion: mapa de definiciones vacio
+    const std::unordered_map<const Concept*, const Concept*> noDefs;
+
+    // Atomicos Base
     const auto* A = m.getAtomic("A");
     const auto* B = m.getAtomic("B");
     const auto* C = m.getAtomic("C");
@@ -24,24 +28,24 @@ void runUnitTests() {
 
     // Test 1: A \sqcap \neg A (Insatisfacible)
     const auto* test1 = m.getConjunction(A, notA);
-    assert(reasoner.isSatisfiable(test1) == false && "Test 1 failed: Simple Clash");
+    assert(reasoner.isSatisfiable(test1, noDefs) == false && "Test 1 failed: Simple Clash");
 
     // Test 2: (A \sqcup B) \sqcap \neg A (Satisfacible)
     const auto* A_or_B = m.getDisjunction(A, B);
     const auto* test2 = m.getConjunction(A_or_B, notA);
-    assert(reasoner.isSatisfiable(test2) == true && "Test 2 failed: Simple Disjunction");
+    assert(reasoner.isSatisfiable(test2, noDefs) == true && "Test 2 failed: Simple Disjunction");
 
     // Test 3: \exists R.A \sqcap \forall R.\neg A (Insatisfacible)
     const auto* someR_A = m.getExistential("R", A);
     const auto* allR_notA = m.getUniversal("R", notA);
     const auto* test3 = m.getConjunction(someR_A, allR_notA);
-    assert(reasoner.isSatisfiable(test3) == false && "Test 3 failed: Exists + Forall Clash");
+    assert(reasoner.isSatisfiable(test3, noDefs) == false && "Test 3 failed: Exists + Forall Clash");
 
     // Test 4: \exists R.A \sqcap \forall R.(\exists R.A) (Satisfacible)
     const auto* someR_A_inner = m.getExistential("R", A);
     const auto* allR_some = m.getUniversal("R", someR_A_inner);
     const auto* test4 = m.getConjunction(someR_A, allR_some);
-    assert(reasoner.isSatisfiable(test4) == true && "Test 4 failed: Nested Exists + Forall");
+    assert(reasoner.isSatisfiable(test4, noDefs) == true && "Test 4 failed: Nested Exists + Forall");
 
 
     // Test 5: Disyunción profunda 
@@ -51,14 +55,14 @@ void runUnitTests() {
     const auto* allR_notA_notB = m.getUniversal("R", notA_and_notB);
     const auto* someR_A_or_B = m.getExistential("R", A_or_B);
     const auto* test5 = m.getConjunction(someR_A_or_B, allR_notA_notB);
-    assert(reasoner.isSatisfiable(test5) == false && "Test 5 failed: Deep Disjunction Root-Isolation Bug");
+    assert(reasoner.isSatisfiable(test5, noDefs) == false && "Test 5 failed: Deep Disjunction Root-Isolation Bug");
 
     // Test 6: Independecia de siblings
     // \exists R.(A \sqcup B) \sqcap \exists R.(\neg A \sqcap \neg B)
     // Satisfacible: se crean dos R-sucesores separados, no interactuan.
     const auto* someR_notA_notB = m.getExistential("R", notA_and_notB);
     const auto* test6 = m.getConjunction(someR_A_or_B, someR_notA_notB);
-    assert(reasoner.isSatisfiable(test6) == true && "Test 6 failed: Sibling Independence Corrupted");
+    assert(reasoner.isSatisfiable(test6, noDefs) == true && "Test 6 failed: Sibling Independence Corrupted");
 
     // Test 7: Backtracking exhaustivo
     // (A \sqcup B) \sqcap (\neg A \sqcup B) \sqcap (A \sqcup \neg B) \sqcap (\neg A \sqcup \neg B)
@@ -70,7 +74,7 @@ void runUnitTests() {
     auto* t7_1 = m.getConjunction(A_or_B, notA_or_B);
     auto* t7_2 = m.getConjunction(t7_1, A_or_notB);
     auto* test7 = m.getConjunction(t7_2, notA_or_notB);
-    assert(reasoner.isSatisfiable(test7) == false && "Test 7 failed: Backtracking State Corruption");
+    assert(reasoner.isSatisfiable(test7, noDefs) == false && "Test 7 failed: Backtracking State Corruption");
 
     // Test 8: Blocking basado en disyunción
     // A \sqcap \exists R. ( B \sqcup \exists R. A )
@@ -81,7 +85,33 @@ void runUnitTests() {
     const auto* someR_B_or = m.getExistential("R", B_or_someR_A);
     const auto* test8 = m.getConjunction(A, someR_B_or);
     
-    assert(reasoner.isSatisfiable(test8) == true && "Test 8 failed: Disjunction Ancestor Blocking Corrupted");
+    assert(reasoner.isSatisfiable(test8, noDefs) == true && "Test 8 failed: Disjunction Ancestor Blocking Corrupted");
+
+    // ============ Tests de absorcion / lazy unfolding ============
+
+    // Test 9: unfolding encadenado + interaccion con \forall
+    // defs: A -> B, B -> \exists R.C ; query: A \sqcap \forall R.\neg C
+    // A dispara B, B dispara \exists R.C; el hijo {C} recibe \neg C => UNSAT
+    std::unordered_map<const Concept*, const Concept*> defs9;
+    defs9[A] = B;
+    defs9[B] = m.getExistential("R", C);
+    const auto* allR_notC = m.getUniversal("R", notC);
+    const auto* test9 = m.getConjunction(A, allR_notC);
+    assert(reasoner.isSatisfiable(test9, defs9) == false && "Test 9 failed: Chained Unfolding + Forall");
+    // Sin defs, el mismo query es SAT (las definiciones no aplican)
+    assert(reasoner.isSatisfiable(test9, noDefs) == true && "Test 9b failed: Unfolding fired without defs");
+
+    // Test 10: definiciones ciclicas terminan via blocking
+    // defs: A -> \exists R.B, B -> \exists R.A ; query: A => SAT (cadena bloqueada)
+    std::unordered_map<const Concept*, const Concept*> defs10;
+    defs10[A] = m.getExistential("R", B);
+    defs10[B] = m.getExistential("R", A);
+    assert(reasoner.isSatisfiable(A, defs10) == true && "Test 10 failed: Cyclic Unfolding + Blocking");
+}
+
+void runUnitTests() {
+    runUnitTestsWith<SerialReasoner>();
+    runUnitTestsWith<ParallelReasoner>();
 }
 
 int main(int argc, char** argv) {

@@ -4,6 +4,7 @@
 #include "concept_manager.h"
 #include "nnf.h"
 #include "reasoner.h"
+#include <algorithm>
 #include <chrono>
 #include <cstdlib>
 #include <fstream>
@@ -28,8 +29,16 @@ class KnowledgeBase {
         NNFTransformer transformer(manager);
         globalTBox = transformer.convertToNNF(rawRoot);
 
-        // Todos los conceptos atómicos para el loop de clasificación
+        // Todos los conceptos atómicos para el loop de clasificación.
+        // Orden determinista: el unordered_set del intern pool itera en orden
+        // dependiente de punteros (no reproducible entre runs); sin este sort
+        // los indices i,j de STATS_CSV no son comparables entre ejecuciones.
         namedConcepts = manager.getAllAtomicConcepts();
+        std::sort(namedConcepts.begin(), namedConcepts.end(),
+                  [](const Concept* a, const Concept* b) {
+                      return static_cast<const AtomicConcept*>(a)->name <
+                             static_cast<const AtomicConcept*>(b)->name;
+                  });
         
         // Aplanamos el arbol de conjunciones
         std::vector<const Concept*> flattenedAxioms;
@@ -67,6 +76,11 @@ class KnowledgeBase {
             }
         }
 
+        // Invariante: cada axioma vive en exactamente un bucket
+        std::cout << "ABSORBED="
+                  << (flattenedAxioms.size() - residualAxioms.size()) << "/"
+                  << flattenedAxioms.size() << "\n";
+
         // Rearmamos lo que quedó
         residualTBox = nullptr;
         if (residualAxioms.empty()) {
@@ -93,9 +107,14 @@ class KnowledgeBase {
 
     // Chequeo de consistencia
     bool isConsistent(std::unique_ptr<Reasoner>& reasoner) {
-        // En un benchmark sin ABox (nuestro caso), consistencia es simplemente
-        // chequear si la TBox global
-        return reasoner->isSatisfiable(residualTBox, defs);
+        // Sin TBox residual, la KB es trivialmente consistente: toda
+        // definicion absorbida A \sqsubseteq C se satisface interpretando A
+        // como vacio (nada dispara los triggers)
+        if (!residualTBox)
+            return true;
+        // Consistencia = satisfacibilidad de la TBox residual, propagada
+        // tambien a los sucesores (segundo argumento)
+        return reasoner->isSatisfiable(residualTBox, defs, residualTBox);
     }
 
     // Clasificación
