@@ -49,9 +49,7 @@ public:
                 const auto* notB = manager.getNegation(namedConcepts[j]);
                 const auto* query = manager.getConjunction(A, notB);
                 
-                const auto* fullTest = manager.getConjunction(query, globalTBox);
-                
-                bool isSatisfiable = reasoner->isSatisfiable(fullTest);
+                bool isSatisfiable = reasoner->isSatisfiable(query, globalTBox);
                 if (!isSatisfiable) {
                     // Se cumple la subsunción: A es subclase de B
                     recordSubsumption(A, namedConcepts[j]);

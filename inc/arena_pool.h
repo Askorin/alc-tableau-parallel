@@ -13,9 +13,9 @@ public:
     explicit ArenaPool(size_t initial_count = 64, size_t default_cap = 50000) 
         : default_capacity(default_cap) {
         omp_init_lock(&lock);
-        for (size_t i = 0; i < initial_count; ++i) {
-            pool.push_back(new ThreadLocalArena(default_capacity));
-        }
+        //for (size_t i = 0; i < initial_count; ++i) {
+        //    pool.push_back(new ThreadLocalArena(default_capacity));
+        //}
     }
 
     ~ArenaPool() {
@@ -24,6 +24,7 @@ public:
         }
         omp_destroy_lock(&lock);
     }
+
 
     ThreadLocalArena* acquire() {
         ThreadLocalArena* arena = nullptr;
@@ -37,6 +38,7 @@ public:
         if (!arena) {
             arena = new ThreadLocalArena(default_capacity);
         }
+        arena->reset();
         return arena;
     }
 

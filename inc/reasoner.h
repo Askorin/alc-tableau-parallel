@@ -9,5 +9,5 @@ class Reasoner {
   public:
     virtual ~Reasoner() = default;
     
-    virtual bool isSatisfiable(const Concept* rootConcept) = 0;
+    virtual bool isSatisfiable(const Concept* query, const Concept* tbox = nullptr) = 0;
 };

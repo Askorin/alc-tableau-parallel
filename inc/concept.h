@@ -47,7 +47,7 @@ struct ConjunctionConcept : public Concept {
     bool isEqual(const Concept* other) const override {
         if (other->type != ConceptType::CONJUNCTION) return false;
         auto* o = static_cast<const ConjunctionConcept*>(other);
-        return (left == o->left & right == o->right) || (left == o->right && right == o->left); // Conmutatividad
+        return (left == o->left && right == o->right) || (left == o->right && right == o->left); // Conmutatividad
     }
 };
 
@@ -58,8 +58,8 @@ struct DisjunctionConcept : public Concept {
     DisjunctionConcept(const Concept* l, const Concept* r) : Concept(ConceptType::DISJUNCTION), left(l), right(r) {}
     bool isEqual(const Concept* other) const override {
         if (other->type != ConceptType::DISJUNCTION) return false;
-        auto* o = static_cast<const ConjunctionConcept*>(other);
-        return (left == o->left & right == o->right) || (left == o->right && right == o->left); // Conmutatividad
+        auto* o = static_cast<const DisjunctionConcept*>(other);
+        return (left == o->left && right == o->right) || (left == o->right && right == o->left); // Conmutatividad
     }
 };
 

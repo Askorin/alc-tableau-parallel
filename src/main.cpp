@@ -11,8 +11,8 @@
 
 void runUnitTests() {
     ConceptManager m;
-    SerialReasoner reasoner;
-    //ParallelReasoner reasoner;
+    //SerialReasoner reasoner;
+    ParallelReasoner reasoner;
 
     // Atomicos Base 
     const auto* A = m.getAtomic("A");

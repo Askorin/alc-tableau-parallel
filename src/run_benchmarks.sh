@@ -1,11 +1,8 @@
 #!/bin/bash
 
-# Requerido para #pragma omp cancel 
-export OMP_CANCELLATION=true
-
 EXECUTABLE="./main"
 DATA_DIR="../data/tea_ast"
-INDICES=(55) 
+INDICES=(3) 
 THREADS=(1 2 3 4)
 CSV_FILE="benchmark_results.csv"
 

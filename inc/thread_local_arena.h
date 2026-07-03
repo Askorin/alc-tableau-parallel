@@ -75,6 +75,13 @@ public:
     ThreadLocalArena(const ThreadLocalArena&) = delete;
     ThreadLocalArena& operator=(const ThreadLocalArena&) = delete;
 
+    void reset() {
+        node_bump = label_bump = edge_bump = 0;
+        base_node = base_label = base_edge = 0;
+        prefix = nullptr;
+        task_root_idx = SIZE_MAX;
+    }
+
     // ==========================================
     // SEMANTICS MOVE 
     // ==========================================
@@ -125,7 +132,7 @@ public:
             reallocatePools(capacity * 2);
         }
         size_t idx = node_bump++;
-        node_pool[idx] = {label_bump, 0, edge_bump, 0, false, parent_idx};
+        node_pool[idx] = {label_bump, 0, edge_bump, 0, parent_idx};
         return idx;
     }
 

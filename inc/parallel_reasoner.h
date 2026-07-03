@@ -17,19 +17,19 @@
 
 class ParallelReasoner : public Reasoner {
   private:
-    static constexpr int MAX_OMP_DEPTH = 2;
-    static constexpr int CHUNK_SIZE = 64;
+    static constexpr int MAX_OMP_DEPTH = 1;
+    static constexpr int CHUNK_SIZE = 1;
+    ArenaPool pool;
+    const Concept* tbox_;
 
     bool checkForClash(size_t node_idx, const ThreadLocalArena& arena) {
         for (const Concept* c : arena.getLabels(node_idx)) {
             if (c->type == ConceptType::NEGATION) {
                 const auto* neg = static_cast<const NegationConcept*>(c);
                 if (arena.hasLabel(node_idx, neg->inner)) {
-                    // We must bypass const to flag the clash metadata directly
-                    // on the node
-                    const_cast<ThreadLocalArena&>(arena)
-                        .getNode(node_idx)
-                        .isClashed = true;
+                    //const_cast<ThreadLocalArena&>(arena)
+                    //    .getNode(node_idx)
+                    //    .isClashed = true;
                     return true;
                 }
             }
@@ -55,6 +55,13 @@ class ParallelReasoner : public Reasoner {
             }
         }
         return false;
+    }
+
+    size_t makeSuccesor(size_t parent_idx, ThreadLocalArena& arena) {
+        size_t idx = arena.allocateNode(parent_idx);
+        if (tbox_)
+            arena.addLabelToNode(idx, tbox_);
+        return idx;
     }
 
     // FASE A: Solo resuelve ANDs, no se generan hijos aquí.
@@ -106,7 +113,7 @@ class ParallelReasoner : public Reasoner {
                     }
                 }
                 if (!satisfied) {
-                    size_t new_idx = arena.allocateNode(node_idx);
+                    size_t new_idx = makeSuccesor(node_idx, arena);
                     arena.addLabelToNode(new_idx, ex->inner);
                     arena.addEdgeToNode(node_idx, ex->role, new_idx);
                 }
@@ -126,8 +133,8 @@ class ParallelReasoner : public Reasoner {
                 for (const Edge& edge : edge_snapshot) {
                     if (edge.role == univ->role &&
                         !arena.hasLabel(edge.child_idx, univ->inner)) {
-                        // Seguro: Hijo está garantizado a haber sido creado localmente en fase previa
-                        // in Phase 1
+                        // Seguro: Hijo está garantizado a haber sido creado
+                        // localmente en fase previa in Phase 1
                         arena.addLabelToNode(edge.child_idx, univ->inner);
                     }
                 }
@@ -140,7 +147,6 @@ class ParallelReasoner : public Reasoner {
         }
         return frontier;
     }
-
 
     bool hasPendingDisjunctions(size_t node_idx,
                                 const ThreadLocalArena& arena) {
@@ -159,8 +165,7 @@ class ParallelReasoner : public Reasoner {
     }
 
     bool resolveDisjunctions(size_t node_idx, ThreadLocalArena& arena,
-                             int depth, ArenaPool& pool,
-                             std::vector<size_t>& ancestors) {
+                             int depth, std::vector<size_t>& ancestors) {
         // Snapshot de labels para evitar invalidación de iterador
         auto current_labels = arena.getLabels(node_idx);
         std::vector<const Concept*> labels_snapshot(current_labels.begin(),
@@ -180,8 +185,7 @@ class ParallelReasoner : public Reasoner {
                     copyLeft.addLabelToNode(node_idx, disj->left);
 
                     // Saturamos la izquierda
-                    if (processNode(node_idx, copyLeft, depth, pool,
-                                    ancestors)) {
+                    if (processNode(node_idx, copyLeft, depth, ancestors)) {
                         return true;
                     }
 
@@ -192,32 +196,36 @@ class ParallelReasoner : public Reasoner {
                     copyRight.addLabelToNode(node_idx, disj->right);
 
                     // Saturamos la derecha
-                    return processNode(node_idx, copyRight, depth, pool,
-                                       ancestors);
+                    return processNode(node_idx, copyRight, depth, ancestors);
                 }
             }
         }
-        return false; // No debería alcanzarse si hasPendingDisjunctions era true
+        return false; // No debería alcanzarse si hasPendingDisjunctions era
+                      // true
     }
 
     bool processNode(size_t node_idx, ThreadLocalArena& arena, int depth,
-                     ArenaPool& pool, std::vector<size_t>& ancestors) {
+                     std::vector<size_t>& ancestors) {
 
-        // Atrapamos clashes pasados desde reglas universales/existenciales de padres
-        // o clashes creados por disyunciones previas
-        if (checkForClash(node_idx, arena)) return false;
-        
-        if (isBlocked(node_idx, ancestors, arena)) return true; // Blocked = SAT Valid Cycle
+        // Atrapamos clashes pasados desde reglas universales/existenciales de
+        // padres o clashes creados por disyunciones previas
+        if (checkForClash(node_idx, arena))
+            return false;
+
+        if (isBlocked(node_idx, ancestors, arena))
+            return true; // Blocked = SAT Valid Cycle
 
         // Saturación proposicional (ANDs)
-        if (!saturatePropositional(node_idx, arena)) return false; 
+        if (!saturatePropositional(node_idx, arena))
+            return false;
 
         // Disyunciones (ORs)
         if (hasPendingDisjunctions(node_idx, arena)) {
-            return resolveDisjunctions(node_idx, arena, depth, pool, ancestors); 
+            return resolveDisjunctions(node_idx, arena, depth, ancestors);
         }
 
-        // Generación estructural solo si es que el nodo está al 100% proposiconalmente
+        // Generación estructural solo si es que el nodo está al 100%
+        // proposiconalmente
         std::vector<size_t> frontier = generateFrontier(node_idx, arena);
         if (frontier.empty())
             return true; // Leaf node
@@ -226,8 +234,8 @@ class ParallelReasoner : public Reasoner {
         std::atomic<bool> global_clash{false};
         ancestors.push_back(node_idx);
 
-        if (depth < MAX_OMP_DEPTH && frontier.size() > 16) {
-            #pragma omp parallel for schedule(dynamic, CHUNK_SIZE) shared(global_clash)
+        if (depth < MAX_OMP_DEPTH && frontier.size() >= 2) {
+#pragma omp parallel for schedule(dynamic, CHUNK_SIZE) shared(global_clash)
             for (size_t i = 0; i < frontier.size(); ++i) {
                 if (global_clash.load(std::memory_order_relaxed))
                     continue;
@@ -237,7 +245,7 @@ class ParallelReasoner : public Reasoner {
                 task_arena.bindPrefix(arena, arena.saveState(), frontier[i]);
 
                 std::vector<size_t> local_ancestors = ancestors;
-                if (!processNode(frontier[i], task_arena, depth + 1, pool,
+                if (!processNode(frontier[i], task_arena, depth + 1,
                                  local_ancestors)) {
                     global_clash.store(true, std::memory_order_relaxed);
                 }
@@ -246,8 +254,7 @@ class ParallelReasoner : public Reasoner {
             for (size_t child_idx : frontier) {
                 if (global_clash.load(std::memory_order_relaxed))
                     break;
-                if (!processNode(child_idx, arena, depth + 1, pool,
-                                 ancestors)) {
+                if (!processNode(child_idx, arena, depth + 1, ancestors)) {
                     global_clash.store(true, std::memory_order_relaxed);
                 }
             }
@@ -258,24 +265,27 @@ class ParallelReasoner : public Reasoner {
     }
 
   public:
-    explicit ParallelReasoner() = default;
-
-    bool isSatisfiable(const Concept* rootConcept) override {
-
+    explicit ParallelReasoner() {
         // Inicializamos memory pool masiva
         ArenaPool pool(64, 100000);
+    }
 
+    bool isSatisfiable(const Concept* query,
+                       const Concept* tbox = nullptr) override {
+        tbox_ = tbox;
         ScopedArena master_scoped(pool);
         ThreadLocalArena& arena = master_scoped.get();
 
         size_t root_idx = arena.allocateNode();
-        arena.addLabelToNode(root_idx, rootConcept);
+        arena.addLabelToNode(root_idx, query);
+        if (tbox_)
+            arena.addLabelToNode(root_idx, tbox_);
 
         // El nodo raíz no tiene ancestros, lógicamente
         // processNode manejará pushing y popping a medida que el arbol crece
         std::vector<size_t> root_ancestors;
 
         // Invocamos el dispatcher maestro
-        return processNode(root_idx, arena, 0, pool, root_ancestors);
+        return processNode(root_idx, arena, 0, root_ancestors);
     }
 };

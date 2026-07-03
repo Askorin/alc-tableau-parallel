@@ -17,6 +17,6 @@ struct TableauNode {
     size_t label_count = 0;
     size_t edge_offset = 0;
     size_t edge_count = 0;
-    bool isClashed = false;
+    //bool isClashed = false;
     size_t parent_idx = SIZE_MAX; // SIZE_MAX indicates the mathematical root
 };
