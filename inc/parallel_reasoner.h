@@ -65,9 +65,9 @@ class ParallelReasoner : public Reasoner {
     }
 
     // FASE A: Solo resuelve ANDs, no se generan hijos aquí.
-    bool
-    saturatePropositional(size_t node_idx, ThreadLocalArena& arena,
-                          const std::unordered_map<Concept*, Concept*>& defs) {
+    bool saturatePropositional(
+        size_t node_idx, ThreadLocalArena& arena,
+        const std::unordered_map<const Concept*, const Concept*>& defs) {
         bool changed = true;
         while (changed) {
             changed = false;
@@ -90,9 +90,9 @@ class ParallelReasoner : public Reasoner {
                 } else if (c->type == ConceptType::ATOMIC) {
                     if (auto it = defs.find(c);
                         it != defs.end() &&
-                        !arena.hasLabel(node_idx, it->second())) {
+                        !arena.hasLabel(node_idx, it->second)) {
 
-                        arena.addLabelToNode(node_idx, it->second());
+                        arena.addLabelToNode(node_idx, it->second);
                         changed = true;
                     }
                 }
@@ -174,9 +174,11 @@ class ParallelReasoner : public Reasoner {
         return false;
     }
 
-    bool resolveDisjunctions(size_t node_idx, ThreadLocalArena& arena,
-                             int depth, std::vector<size_t>& ancestors,
-                             const std::atomic<bool>* cancel) {
+    bool resolveDisjunctions(
+        size_t node_idx, ThreadLocalArena& arena, int depth,
+        std::vector<size_t>& ancestors,
+        const std::unordered_map<const Concept*, const Concept*>& defs,
+        const std::atomic<bool>* cancel) {
         // Snapshot de labels para evitar invalidación de iterador
         auto current_labels = arena.getLabels(node_idx);
         std::vector<const Concept*> labels_snapshot(current_labels.begin(),
@@ -196,7 +198,7 @@ class ParallelReasoner : public Reasoner {
                     copyLeft.addLabelToNode(node_idx, disj->left);
 
                     // Saturamos la izquierda
-                    if (processNode(node_idx, copyLeft, depth, ancestors,
+                    if (processNode(node_idx, copyLeft, depth, ancestors, defs,
                                     cancel)) {
                         return true;
                     }
@@ -209,7 +211,7 @@ class ParallelReasoner : public Reasoner {
 
                     // Saturamos la derecha
                     return processNode(node_idx, copyRight, depth, ancestors,
-                                       cancel);
+                                       defs, cancel);
                 }
             }
         }
@@ -219,7 +221,7 @@ class ParallelReasoner : public Reasoner {
 
     bool processNode(size_t node_idx, ThreadLocalArena& arena, int depth,
                      std::vector<size_t>& ancestors,
-                     const std::unordered_map<Concept*, Concept*>& defs,
+                     const std::unordered_map<const Concept*, const Concept*>& defs,
                      const std::atomic<bool>* cancel = nullptr) {
 
         // Un hermano en un frontier paralelo superior ya clasheó: nuestro
@@ -243,7 +245,7 @@ class ParallelReasoner : public Reasoner {
 
         // Disyunciones (ORs)
         if (hasPendingDisjunctions(node_idx, arena)) {
-            return resolveDisjunctions(node_idx, arena, depth, ancestors,
+            return resolveDisjunctions(node_idx, arena, depth, ancestors, defs,
                                        cancel);
         }
 
@@ -293,7 +295,7 @@ class ParallelReasoner : public Reasoner {
     explicit ParallelReasoner() = default;
 
     bool isSatisfiable(const Concept* query,
-                       const std::unordered_map<Concept*, Concept*>& defs,
+                       const std::unordered_map<const Concept*, const Concept*>& defs,
                        const Concept* tbox = nullptr) override {
         tbox_ = tbox;
         ScopedArena master_scoped(pool);

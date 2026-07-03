@@ -22,6 +22,6 @@ class Reasoner {
 
     virtual bool
     isSatisfiable(const Concept* query,
-                  const std::unordered_map<Concept*, Concept*>& defs,
+                  const std::unordered_map<const Concept*, const Concept*>& defs,
                   const Concept* tbox = nullptr) = 0;
 };

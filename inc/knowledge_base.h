@@ -17,7 +17,7 @@ class KnowledgeBase {
     std::vector<const Concept*> namedConcepts;
     const Concept* globalTBox; // TBox internalizada
     const Concept* residualTBox; // TBox internalizada sin axiomas absorbidos
-    std::unordered_map<Concept*, Concept*> defs;
+    std::unordered_map<const Concept*, const Concept*> defs;
 
   public:
     // Inicialización y preprocesamiento a NNF
@@ -48,7 +48,7 @@ class KnowledgeBase {
 
             if (axiom->type == ConceptType::DISJUNCTION) {
                 auto* disj = static_cast<const DisjunctionConcept*>(axiom);
-                auto* negAtomic = [](const Concept* c) -> const Concept* {
+                auto negAtomic = [](const Concept* c) -> const Concept* {
                     if (c->type != ConceptType::NEGATION) return nullptr;
                     auto* n = static_cast<const NegationConcept*>(c);
                     return (n->inner->type == ConceptType::ATOMIC) ? n->inner : nullptr;
