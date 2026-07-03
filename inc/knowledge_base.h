@@ -3,6 +3,9 @@
 #include "nnf.h"
 #include "reasoner.h"
 #include "ast_builder.h"
+#include <chrono>
+#include <cstdlib>
+#include <fstream>
 #include <iostream>
 #include <vector>
 
@@ -39,6 +42,16 @@ public:
         }
         
         // La idea es chequear A_i \sqsubseteq A_j para pares de conceptos atómicos. 
+        // Dump opcional de estadisticas por test (para calculo de tau).
+        // Solo significativo en runs seriales: el razonador paralelo no
+        // llena TestStats.
+        std::ofstream statsFile;
+        const char* statsPath = std::getenv("STATS_CSV");
+        if (statsPath) {
+            statsFile.open(statsPath);
+            statsFile << "i,j,sat,mu,nodes,ms\n";
+        }
+
         size_t count = 0;
         for (size_t i = 0; i < namedConcepts.size(); ++i) {
             for (size_t j = 0; j < namedConcepts.size(); ++j) {
@@ -49,7 +62,16 @@ public:
                 const auto* notB = manager.getNegation(namedConcepts[j]);
                 const auto* query = manager.getConjunction(A, notB);
                 
+                auto t0 = std::chrono::steady_clock::now();
                 bool isSatisfiable = reasoner->isSatisfiable(query, globalTBox);
+                if (statsPath) {
+                    double ms = std::chrono::duration<double, std::milli>(
+                                    std::chrono::steady_clock::now() - t0)
+                                    .count();
+                    statsFile << i << ',' << j << ',' << isSatisfiable << ','
+                              << reasoner->stats.mu << ','
+                              << reasoner->stats.nodes << ',' << ms << "\n";
+                }
                 if (!isSatisfiable) {
                     // Se cumple la subsunción: A es subclase de B
                     recordSubsumption(A, namedConcepts[j]);

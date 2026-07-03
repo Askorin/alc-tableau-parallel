@@ -188,6 +188,7 @@ class SerialReasoner : public Reasoner {
 
     bool processNode(size_t node_idx, ThreadLocalArena& arena,
                      std::vector<size_t>& ancestors) {
+        ++stats.nodes;
         if (checkForClash(node_idx, arena))
             return false;
         if (isBlocked(node_idx, ancestors, arena))
@@ -201,8 +202,12 @@ class SerialReasoner : public Reasoner {
         }
 
         std::vector<size_t> frontier = generateFrontier(node_idx, arena);
+        // mu: primer frontier no vacio del test = ramas conjuntivas
+        // disponibles en el primer punto paralelizable 
+        if (stats.mu == 0 && !frontier.empty())
+            stats.mu = frontier.size();
         if (frontier.empty())
-            return true; // Leaf node
+            return true; 
 
         ancestors.push_back(node_idx);
 
@@ -218,14 +223,13 @@ class SerialReasoner : public Reasoner {
     }
 
   public:
-    explicit SerialReasoner() {
-        // Inicializamos memory pool masiva
-        ArenaPool pool(64, 100000);
-    }
+    // El pool member se default-construye (lazy, sin arenas pre-alocadas)
+    explicit SerialReasoner() = default;
 
     bool isSatisfiable(const Concept* query,
                        const Concept* tbox = nullptr) override {
         tbox_ = tbox;
+        stats = {};
         ScopedArena master_scoped(pool);
         ThreadLocalArena& arena = master_scoped.get();
         size_t root_idx = arena.allocateNode();

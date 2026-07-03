@@ -165,7 +165,8 @@ class ParallelReasoner : public Reasoner {
     }
 
     bool resolveDisjunctions(size_t node_idx, ThreadLocalArena& arena,
-                             int depth, std::vector<size_t>& ancestors) {
+                             int depth, std::vector<size_t>& ancestors,
+                             const std::atomic<bool>* cancel) {
         // Snapshot de labels para evitar invalidación de iterador
         auto current_labels = arena.getLabels(node_idx);
         std::vector<const Concept*> labels_snapshot(current_labels.begin(),
@@ -185,7 +186,8 @@ class ParallelReasoner : public Reasoner {
                     copyLeft.addLabelToNode(node_idx, disj->left);
 
                     // Saturamos la izquierda
-                    if (processNode(node_idx, copyLeft, depth, ancestors)) {
+                    if (processNode(node_idx, copyLeft, depth, ancestors,
+                                    cancel)) {
                         return true;
                     }
 
@@ -196,7 +198,8 @@ class ParallelReasoner : public Reasoner {
                     copyRight.addLabelToNode(node_idx, disj->right);
 
                     // Saturamos la derecha
-                    return processNode(node_idx, copyRight, depth, ancestors);
+                    return processNode(node_idx, copyRight, depth, ancestors,
+                                       cancel);
                 }
             }
         }
@@ -205,7 +208,15 @@ class ParallelReasoner : public Reasoner {
     }
 
     bool processNode(size_t node_idx, ThreadLocalArena& arena, int depth,
-                     std::vector<size_t>& ancestors) {
+                     std::vector<size_t>& ancestors,
+                     const std::atomic<bool>* cancel = nullptr) {
+
+        // Un hermano en un frontier paralelo superior ya clasheó: nuestro
+        // resultado es irrelevante, abortamos barato. (Sin esto, un task
+        // profundo nunca ve el flag y explora subárboles que el orden serial
+        // jamás tocaría) 
+        if (cancel && cancel->load(std::memory_order_relaxed))
+            return false;
 
         // Atrapamos clashes pasados desde reglas universales/existenciales de
         // padres o clashes creados por disyunciones previas
@@ -221,7 +232,8 @@ class ParallelReasoner : public Reasoner {
 
         // Disyunciones (ORs)
         if (hasPendingDisjunctions(node_idx, arena)) {
-            return resolveDisjunctions(node_idx, arena, depth, ancestors);
+            return resolveDisjunctions(node_idx, arena, depth, ancestors,
+                                       cancel);
         }
 
         // Generación estructural solo si es que el nodo está al 100%
@@ -246,7 +258,7 @@ class ParallelReasoner : public Reasoner {
 
                 std::vector<size_t> local_ancestors = ancestors;
                 if (!processNode(frontier[i], task_arena, depth + 1,
-                                 local_ancestors)) {
+                                 local_ancestors, &global_clash)) {
                     global_clash.store(true, std::memory_order_relaxed);
                 }
             }
@@ -254,7 +266,8 @@ class ParallelReasoner : public Reasoner {
             for (size_t child_idx : frontier) {
                 if (global_clash.load(std::memory_order_relaxed))
                     break;
-                if (!processNode(child_idx, arena, depth + 1, ancestors)) {
+                if (!processNode(child_idx, arena, depth + 1, ancestors,
+                                 cancel)) {
                     global_clash.store(true, std::memory_order_relaxed);
                 }
             }
@@ -265,10 +278,8 @@ class ParallelReasoner : public Reasoner {
     }
 
   public:
-    explicit ParallelReasoner() {
-        // Inicializamos memory pool masiva
-        ArenaPool pool(64, 100000);
-    }
+    // El pool member se default-construye (lazy, sin arenas pre-alocadas)
+    explicit ParallelReasoner() = default;
 
     bool isSatisfiable(const Concept* query,
                        const Concept* tbox = nullptr) override {
