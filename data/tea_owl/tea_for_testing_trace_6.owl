@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/ontologies/2010/6/26/tea.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.semanticweb.org/ontologies/2010/6/26/tea.owl">
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#black_tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#complete_ferment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#cyan_tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ferment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#frying"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#green_tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#intensive_ferment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#mild_ferment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#moderate_ferment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#oolong_tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#red_tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#roasting"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#slight_ferment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#sun-baking"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#technique"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#white_tea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#x0"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#yellow_tea"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_ferment"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#r0"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#black_tea"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#has_ferment"/>
+            <Class IRI="#complete_ferment"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#cyan_tea"/>
+        <Class IRI="#oolong_tea"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#green_tea"/>
+        <ObjectComplementOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#has_ferment"/>
+                <Class IRI="#ferment"/>
+            </ObjectSomeValuesFrom>
+        </ObjectComplementOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#oolong_tea"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#has_ferment"/>
+            <Class IRI="#mild_ferment"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#red_tea"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#has_ferment"/>
+            <Class IRI="#intensive_ferment"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#white_tea"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#has_ferment"/>
+            <Class IRI="#moderate_ferment"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#yellow_tea"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#has_ferment"/>
+            <Class IRI="#slight_ferment"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#black_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#complete_ferment"/>
+        <Class IRI="#ferment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#cyan_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ferment"/>
+        <Class IRI="#technique"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#frying"/>
+        <Class IRI="#technique"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#green_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#intensive_ferment"/>
+        <Class IRI="#ferment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#mild_ferment"/>
+        <Class IRI="#ferment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#moderate_ferment"/>
+        <Class IRI="#ferment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#oolong_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#red_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#roasting"/>
+        <Class IRI="#technique"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#slight_ferment"/>
+        <Class IRI="#ferment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#sun-baking"/>
+        <Class IRI="#technique"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#white_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#yellow_tea"/>
+        <Class IRI="#tea"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#black_tea"/>
+        <Class IRI="#green_tea"/>
+        <Class IRI="#oolong_tea"/>
+        <Class IRI="#red_tea"/>
+        <Class IRI="#white_tea"/>
+        <Class IRI="#yellow_tea"/>
+    </DisjointClasses>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#has_ferment"/>
+        <ObjectProperty abbreviatedIRI=":topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_ferment"/>
+        <Class IRI="#tea"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#has_ferment"/>
+        <Class IRI="#ferment"/>
+    </ObjectPropertyRange>
+
+
+<!--start gci-->
+<Declaration><Class IRI="#x1"/></Declaration><SubClassOf><Class IRI="#x1"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r1"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r1"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x2"/></Declaration><SubClassOf><Class IRI="#x2"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r2"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r2"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x3"/></Declaration><SubClassOf><Class IRI="#x3"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r3"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r3"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x4"/></Declaration><SubClassOf><Class IRI="#x4"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r4"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r4"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x5"/></Declaration><SubClassOf><Class IRI="#x5"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r5"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r5"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x6"/></Declaration><SubClassOf><Class IRI="#x6"/><Class IRI="#x0"/></SubClassOf><Declaration><ObjectProperty IRI="#r6"/></Declaration><SubObjectPropertyOf><ObjectProperty IRI="#r6"/><ObjectProperty IRI="#r0"/></SubObjectPropertyOf><Declaration><Class IRI="#x7"/></Declaration><SubClassOf><Class IRI="#x7"/><Class IRI="#x0"/></SubClassOf><SubClassOf><ObjectUnionOf><ObjectAllValuesFrom><ObjectProperty IRI="#r1"/><ObjectIntersectionOf><Class IRI="#x1"/><Class IRI="#x2"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r3"/><ObjectIntersectionOf><Class IRI="#x3"/><Class IRI="#x4"/></ObjectIntersectionOf></ObjectAllValuesFrom><ObjectAllValuesFrom><ObjectProperty IRI="#r5"/><ObjectIntersectionOf><Class IRI="#x5"/><Class IRI="#x6"/></ObjectIntersectionOf></ObjectAllValuesFrom></ObjectUnionOf><ObjectIntersectionOf><ObjectSomeValuesFrom><ObjectProperty IRI="#r2"/><ObjectUnionOf><Class IRI="#x2"/><Class IRI="#x3"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r4"/><ObjectUnionOf><Class IRI="#x4"/><Class IRI="#x5"/></ObjectUnionOf></ObjectSomeValuesFrom><ObjectSomeValuesFrom><ObjectProperty IRI="#r6"/><ObjectUnionOf><Class IRI="#x6"/><Class IRI="#x7"/></ObjectUnionOf></ObjectSomeValuesFrom></ObjectIntersectionOf></SubClassOf>
+<!--end gci-->
+
+
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+
