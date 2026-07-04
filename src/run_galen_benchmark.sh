@@ -4,10 +4,8 @@
 # Sobreescribibles por entorno:
 #   SIZES="50 100" THREADS="1 2" REPS=2 SEED=Heart PRIMITIVE=1 ./run_galen_benchmark.sh
 #
-# Guia de costos (medidos): el tiempo de clasificacion escala ~N^2 tests x ~25ms.
-#   size 50  -> ~1s      size 100 -> ~4min      size 200 -> ~30min
 # PRIMITIVE=1 pasa --primitive-only (descarta direcciones inversas de A=C,
-# que son no-absorbibles); documentar como aproximacion si se usa.
+# que son no-absorbibles)
 
 EXECUTABLE="./main"
 GALEN_OWL="../data/full-galen.owl"
