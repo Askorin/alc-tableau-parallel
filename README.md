@@ -42,7 +42,7 @@ Genera módulos ALC desde `data/full-galen.owl`(BSF desde semilla) y corre bench
 
 ```bash
 cd src
-SIZES="50 70 100" THREADS="1 2 3 4" REPS=3 SEED=Heart PRIMITIVE=1 ./run_galen_benchmark.sh
+SIZES="50 75 100" THREADS="1 2 3 4" REPS=3 SEED=Heart PRIMITIVE=1 ./run_galen_benchmark.sh
 ```
 
 Salidas: `galen_benchmark_results.csv` y `galen_tau_stats/`.
