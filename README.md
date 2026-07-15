@@ -50,6 +50,6 @@ Tener en cuenta que `galen_100` tarda >20 min por ejecución serial.
 
 ## Análisis
 ```bash
-python3 scripts/analyze.pý  # Reporta medias, speedup, eficiencia, tau y gráficos
+python3 scripts/analyze.py  # Reporta medias, speedup, eficiencia, tau y gráficos
 ```
 
