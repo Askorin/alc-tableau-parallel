@@ -6,7 +6,6 @@ import sys
 NS = {'owl': 'http://www.w3.org/2002/07/owl#'}
 
 def parse_concept(element):
-    """Recursively parses OWL XML elements into AST dictionaries."""
     tag = element.tag.split('}')[-1] 
     
     if tag == 'Class':
@@ -43,7 +42,6 @@ def parse_concept(element):
     raise ValueError(f"Unsupported tag: {tag}")
 
 def internalize_tbox(root):
-    """Parses TBox axioms and reduces them to a single global concept."""
     axioms = []
     
     for sub in root.findall('.//owl:SubClassOf', NS):
@@ -77,10 +75,6 @@ def internalize_tbox(root):
     return global_tbox
 
 def count_existential_branches(node, polarity=1):
-    """
-    Calculates the number of existential restrictions evaluating to true branches
-    by pushing negation downwards (simulating De Morgan's laws for NNF).
-    """
     if not node: return 0
     
     t = node.get("type")

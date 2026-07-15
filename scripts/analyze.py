@@ -129,7 +129,7 @@ def main():
         w.writerows(summary_rows)
     print(f"\nResumen -> {out_csv}")
 
-    # Grafico speedup vs threads (opcional, requiere matplotlib)
+    # Grafico speedup vs threads
     try:
         import matplotlib
         matplotlib.use("Agg")

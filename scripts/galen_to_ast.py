@@ -256,7 +256,7 @@ def main():
                 if s not in selected_set:
                     queue.append(s)
 
-    # ---- Filtrado: solo axiomas con firma contenida en el modulo ----
+    # Filtrado: solo axiomas con firma contenida en el modulo 
     conjuncts = []
     kept_sub, kept_equiv = 0, 0
     for name in selected:
@@ -276,7 +276,6 @@ def main():
             )
             kept_sub += 1
             if kind == "equiv" and not args.primitive_only:
-                # RHS <= LHS  ==>  NOT RHS OR LHS  (no absorbible!)
                 conjuncts.append(
                     {
                         "type": "DISJUNCTION",

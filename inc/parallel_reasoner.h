@@ -163,8 +163,6 @@ class ParallelReasoner : public Reasoner {
         for (const Concept* c : arena.getLabels(node_idx)) {
             if (c->type == ConceptType::DISJUNCTION) {
                 const auto* disj = static_cast<const DisjunctionConcept*>(c);
-                // A disjunction is pending if NEITHER side is currently in the
-                // node's labels
                 if (!arena.hasLabel(node_idx, disj->left) &&
                     !arena.hasLabel(node_idx, disj->right)) {
                     return true;

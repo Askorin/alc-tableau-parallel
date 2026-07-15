@@ -5,7 +5,6 @@ import sys
 NS = {'owl': 'http://www.w3.org/2002/07/owl#'}
 
 def parse_concept(element):
-    """Recursively parses OWL XML elements into AST dictionaries."""
     tag = element.tag.split('}')[-1] 
     
     if tag == 'Class':
@@ -44,7 +43,6 @@ def parse_concept(element):
     raise ValueError(f"Unsupported tag: {tag}")
 
 def internalize_tbox(xml_file):
-    """Parses TBox axioms and reduces them to a single global concept."""
     tree = ET.parse(xml_file)
     root = tree.getroot()
     
